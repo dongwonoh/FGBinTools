@@ -15,7 +15,8 @@
 - `csv2fg.py`: Script to convert csv to FaceGen face file (.fg).
 - `fg2csv.py`: Script to convert FaceGen face files (.fg) to csv.
 - `fg2jpg.sh`: Script to batch-generate jpg files from fg file.
-- `build_model.r`: Script to build data-driven models based on rater responses.
+- `build_model.r`: Script to build data-driven models based on rater responses or other types of corresponding values.
+- `vary_on_model.r`: Scripts to vary faces on a model dimension.
 - `generate_identities.r`: Script to generate multiple identities based on facial information.
 - `si.ctl`: The original FaceGen control file.
 - `si-todorov.ctl` / `si-todorov.csv`: Control files related to face-based social trait judgments.
