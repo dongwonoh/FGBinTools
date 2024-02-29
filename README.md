@@ -5,7 +5,7 @@
 ## Features
 - Automate tedious aspects of generating and manipulating faces.
 - Conversion tools between csv and FaceGen-specific file formats.
-- Scripts to build data-driven models based on rater responses.
+- Scripts to build data-driven models based on rater responses or other types of corresponding values
 
 ## Contents
 
