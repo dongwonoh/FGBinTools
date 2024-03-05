@@ -1,4 +1,10 @@
-#  Varies faces on a model dimension by projecting on added/subtracted values
+# Script vary faces on a model dimension by projecting on added/subtracted values 
+# relative to the original values (rather than op absolute values)
+#
+# original code by Ron Dotsch (rdotsch@gmail.com) circa 2017
+# modified by DongWon Oh (dongwonohphd@gmail.com) 2024
+
+# System prerequisite: none
 
 library(dplyr)
 library(tidyr)
@@ -88,7 +94,7 @@ for (d in 1:nrow(models)) {
     range.shape   = seq(iniShapeVal - 3, iniShapeVal + 3, length.out=7)       
     range.texture = seq(iniTextureVal-3, iniTextureVal+3, length.out=7) 
     
-    #### Create trait variations of identities ####
+    #### Create variations of identities ####
     # Find closest point in range to projection (shape & texture)
     projection.shape <- project(identity[1:50], model[1:50])
     closest.point.in.range.shape <- which.min(abs(range.shape - projection.shape))
