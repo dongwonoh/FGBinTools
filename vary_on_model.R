@@ -1,3 +1,12 @@
+# Script vary faces on a model dimension by projecting on preset values (-3 to 3 SDs) 
+# rather than added/subtracted value from original face values
+# Note the difference from vary_on_model_add.R
+#
+# original code by Ron Dotsch (rdotsch@gmail.com) circa 2017
+# modified by DongWon Oh (dongwonohphd@gmail.com) 2024
+
+# System prerequisite: none
+
 library(dplyr)
 library(tidyr)
 setwd("/path/to/FGBinTools/")    
