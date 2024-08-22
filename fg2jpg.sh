@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # Batch-generates jpg files from fg file
+# DongWon Oh (dongwonohphd@gmail.com) (National University of Singapore)
 #
 # created on 20 july 2023
-# last update: 20 july 2023
-# DongWon Oh (dongwonohphd@gmail.com) (National University of Singapore)
+# last update: 19 Aug 2023
+# - makes remove all temporary files now
+# - takes paths as arguments now
+
 #
 # Usage:
 #  fg2jpg.sh [source path] [target path]
@@ -13,7 +16,8 @@
 # [target path]: path in which jpg files will be saved
 #
 # Prerequisit: FaceGen Main SDK CLI 3 (fg3), FaceGen Base Library CLI 3 (fgbl)
-# Place this file (fg2jpg.sh) under the sdk bin folder with other FaceGEn functions (fg3, fgbl)
+	# Place this file (fg2jpg.sh) under the sdk bin folder with other FaceGEn functions (fg3, fgbl);
+# otherwise, fg3 and fgbl should be accessible from everywhere (ie, in the system PATH).
 
 # Defines emergency exit function
 die() { echo >&2 "$0 ERROR: $@";exit 1;}
@@ -30,7 +34,7 @@ cd "$1" || die "Can't access '$1'."
 # All files names in array $files
 files=(*)                                           
 # Exit if no files found
-[ -f "$files" ] || die "No files found in the directory. Please specify the path to a directory with FG files."
+[ -f "${files[0]}" ] || die "No files found in the directory. Please specify the path to a directory with FG files."
 
 for fgfile in "$1"/*.fg ;do
 	echo "source path: $1"
@@ -51,5 +55,8 @@ rm temp*.tri
 rm temp*.jpg
 rm temp*.txt
 rm ${file}-*
+rm *-matrix.txt
+rm *-landmarks.csv
+
 echo All done.
 
