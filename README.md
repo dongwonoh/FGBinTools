@@ -2,6 +2,11 @@
 
 **FGBinTools** is a collection of functions and scripts designed to create, manipulate, and analyze FaceGen faces and face models. The repository provides tools to automate various tasks associated with FaceGen, making it easier for researchers and developers to work with FaceGen files.
 
+**Latest update**: 22 August 2024
+- `fg2jpg.sh` now takes the output path as an argument
+- `csv2fg.py` now takes parameter number (100 or 130) and output path as arguments
+- minor fixes
+
 ## Features
 - Automate tedious aspects of generating and manipulating faces.
 - Conversion tools between csv and FaceGen-specific file formats.
@@ -22,8 +27,8 @@
 - `si-todorov.ctl` / `si-todorov.csv`: Control files related to face-based social trait judgments.
 
 ## Authors
-- Developed by [Ron Dotsch](mailto:rdotsch@gmail.com)
-- Tweaks and additions by [DongWon Oh](mailto:dongwonohphd@gmail.com)
+- Updated and maintained by [DongWon Oh](mailto:dongwonohphd@gmail.com)
+- Originally developed by [Ron Dotsch](mailto:rdotsch@gmail.com)
 
 ## Prerequisites
 - FaceGen Modeller SDK
