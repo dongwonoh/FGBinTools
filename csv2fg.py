@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 # Script to convert csv to FaceGen face file (.fg)
-#
+# DongWon Oh (dongwonohphd@gmail.com) (National University of Singapore)
 # original code by Ron Dotsch (rdotsch@gmail.com) circa 2017
-# updated and maintained by DongWon Oh (dongwonohphd@gmail.com) 2023
 #
 # prerequisite: FaceGen Modeller SDK, FGBinTools
 # 
