@@ -8,7 +8,7 @@
 # 
 # Last update: 22 Aug 2024
 # - takes output path argument (default: current folder)
-# - takes parameter length argument (default: current folder)
+# - takes parameter length argument (default: 100)
 # - deletes a cache directory at the end 
 # - made Python-3 compatible (2023)
 #
