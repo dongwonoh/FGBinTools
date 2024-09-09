@@ -19,7 +19,7 @@
 - `fg2csv.py`: Script to convert FaceGen face files (.fg) to csv.
 - `fg2jpg.sh`: Script to batch-generate jpg files from fg files.
 - `fg2dae.py`: Script to batch-convert fg files to dae files.
-- `jpg2fg.py`: Script to batch-convert jpg files to dae files.
+- `jpg2fg.py`: Script to batch-convert jpg files to fg files.
 - `build_model.r`: Script to build data-driven models based on rater responses or other types of corresponding values.
 - `vary_on_model.r`: Scripts to vary faces on a model dimension.
 - `generate_identities.r`: Script to generate multiple identities based on facial information.
