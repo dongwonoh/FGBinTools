@@ -2,10 +2,8 @@
 
 **FGBinTools** is a collection of functions and scripts designed to create, manipulate, and analyze FaceGen faces and face models. The repository provides tools to automate various tasks associated with FaceGen, making it easier for researchers and developers to work with FaceGen files.
 
-**Latest update**: 22 August 2024
-- `fg2jpg.sh` now takes the output path as an argument
-- `csv2fg.py` now takes parameter number (100 or 130) and output path as arguments
-- minor fixes
+**Latest update**: 9 Sept 2024
+- functions for batch conversions available (`fg2dae.py`, `jpg2fg.py`). 
 
 ## Features
 - Automate tedious aspects of generating and manipulating faces.
@@ -19,7 +17,9 @@
 - `ctl2csv.py`: Script to convert FaceGen control file (.ctl) to csv.
 - `csv2fg.py`: Script to convert csv to FaceGen face file (.fg).
 - `fg2csv.py`: Script to convert FaceGen face files (.fg) to csv.
-- `fg2jpg.sh`: Script to batch-generate jpg files from fg file.
+- `fg2jpg.sh`: Script to batch-generate jpg files from fg files.
+- `fg2dae.py`: Script to batch-convert fg files to dae files.
+- `jpg2fg.py`: Script to batch-convert jpg files to dae files.
 - `build_model.r`: Script to build data-driven models based on rater responses or other types of corresponding values.
 - `vary_on_model.r`: Scripts to vary faces on a model dimension.
 - `generate_identities.r`: Script to generate multiple identities based on facial information.
@@ -27,7 +27,7 @@
 - `si-todorov.ctl` / `si-todorov.csv`: Control files related to face-based social trait judgments.
 
 ## Authors
-- Updated and maintained by [DongWon Oh](mailto:dongwonohphd@gmail.com)
+- Updated and maintained by [DongWon Oh](mailto:dongwonohphd@gmail.com) and [Angela Mao](mailto:maoanqiangela@gmail.com)
 - Originally developed by [Ron Dotsch](mailto:rdotsch@gmail.com)
 
 ## Prerequisites
