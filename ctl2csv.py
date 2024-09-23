@@ -1,52 +1,66 @@
-# Script to convert FaceGen control file (.ctl) to csv
-#
-# original code by Ron Dotsch (rdotsch@gmail.com) circa 2017
-# made Python-3 compatible by DongWon Oh (dongwonohphd@gmail.com) 2023
-#
-# prerequisite: FaceGen Modeller SDK, FGBinTools
+#!/usr/bin/env python3
 
-import FGBinTools
+import sys
+import os
 import csv
+import FGBinTools
 
-settings = {
-	# FaceGen control file to convert
-	'ctl' : '/path/to/ctl/si-todorov.ctl',
+def print_usage():
+    print("Usage: python ctl2csv.py <input_ctl> <output_csv> [controls_file]")
+    print("  <input_ctl>: Path to input CTL file or directory containing CTL files")
+    print("  <output_csv>: Path to output CSV file or directory")
+    print("  [controls_file]: Optional. Path to file containing list of controls to convert")
 
-	# Controls to convert
-    'controls' : ['Attractiveness (300 faces)','Competence (300 faces)','Dominance (300 faces)','Extroverted (300 faces)','Frightening (300 faces)','Likeable (300 faces)','Mean (300 faces)','Threatening (300 faces)','Trustworthiness (300 faces)','PC1 (300 faces)','PC2 (300 faces)'],
+def process_ctl(ctl_file, csv_file, controls=None):
+    print(f"Loading control vectors from {ctl_file}...")
 
-	# Target csv file
-	'csv' : 'si-todorov.csv',
-}
+    ctl = FGBinTools.readCtl(ctl_file)
 
-print "Loading control vectors from %s..." % settings['ctl']
+    controlshapevec = {}
+    controltexvec = {}
 
-# Load ctl file
-ctl = FGBinTools.readCtl(settings['ctl'])
+    for label, vector in ctl['GS']:
+        if not controls or label in controls:
+            print(f"+ Found: shape {label}")
+            controlshapevec[label] = vector
 
-controlshapevec = {}
-controltexvec = {}
+    for label, vector in ctl['TS']:
+        if not controls or label in controls:
+            print(f"+ Found: texture {label}")
+            controltexvec[label] = vector
 
-# Shape first (called geometry in .ctl terms)   
-for label, vector in FGBinTools.readCtl(settings['ctl'])['GS'] :
-    if label in settings['controls'] :
-        print "+ Found: shape %s" % label
-        controlshapevec[label] = vector      
+    with open(csv_file, 'w', newline='') as csvfile:
+        csvWriter = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-# Then for texture
-for label, vector in FGBinTools.readCtl(settings['ctl'])['TS'] :
-    if label in settings['controls'] :
-        print "+ Found: texture %s" % label
-        controltexvec[label] = vector    
+        for label in sorted(controltexvec.keys()):
+            row = [label] + controlshapevec[label] + controltexvec[label]
+            csvWriter.writerow(row)
 
-# Write csv
-csvfile = file(settings['csv'], 'w')
-csvWriter = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+def main():
+    if len(sys.argv) < 3:
+        print_usage()
+        sys.exit(1)
 
-for label in sorted(controltexvec.keys()) :
-	row = [label] + controlshapevec[label] + controltexvec[label]
-	csvWriter.writerow(row)
+    input_path = sys.argv[1]
+    output_path = sys.argv[2]
+    controls_file = sys.argv[3] if len(sys.argv) > 3 else None
 
-csvfile.close()
+    controls = None
+    if controls_file:
+        with open(controls_file, 'r') as f:
+            controls = [line.strip() for line in f]
 
-print "Done."
+    if os.path.isdir(input_path):
+        os.makedirs(output_path, exist_ok=True)
+        for filename in os.listdir(input_path):
+            if filename.endswith('.ctl'):
+                ctl_file = os.path.join(input_path, filename)
+                csv_file = os.path.join(output_path, filename.replace('.ctl', '.csv'))
+                process_ctl(ctl_file, csv_file, controls)
+    else:
+        process_ctl(input_path, output_path, controls)
+
+    print("Done.")
+
+if __name__ == "__main__":
+    main()
